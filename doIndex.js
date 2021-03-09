@@ -11,12 +11,12 @@ mongodb.MongoClient.connect(uri, async(err, db) => {
     let dbo = db.db("checkthisproperty");
     let c = 0;
     let res1 = await dbo.collection("adhoc").findOneAndDelete({});
-    let add =  dbo.collection("address").find().skip(res1.value.offset).limit(10000).toArray(function(err, result) {
+    let add =  dbo.collection("address").find().skip(res1.value.offset).limit(84000).toArray(function(err, result) {
         if (err) throw err;
         if(result !=null){  
            
             result.forEach(async doc => {
-                c++;          
+                c++;       
                      var document = await dbo.collection("Lot").findOne({
                          geometry: {
                                  $geoIntersects: {
